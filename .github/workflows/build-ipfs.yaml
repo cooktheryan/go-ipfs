@@ -9,6 +9,8 @@ on:
 env:
   GO_VERSION: "1.17"
   GO_IPFS_VERSION: v0.12.2
+  GO_IPFS_IMAGE: "quay.io/redhat-et-ipfs/ipfs"
+
 
 
 jobs:
