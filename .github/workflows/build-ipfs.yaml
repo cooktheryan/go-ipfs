@@ -38,7 +38,7 @@ jobs:
     needs: go-ipfs 
     if: >
       (github.event_name == 'push' || github.event_name == 'schedule') &&
-      (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v'))
+      (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/v'))
     runs-on: ubuntu-20.04
 
     steps:
@@ -64,7 +64,7 @@ jobs:
       - name: Push to registry (version tag)
         if: >
           (github.event_name == 'push' || github.event_name == 'schedule') &&
-          github.ref == 'refs/heads/main'
+          github.ref == 'refs/heads/master'
         run: |
           echo "Pushing to ${GO_IPFS_IMAGE}:${{ env.GO_IPFS_VERSION }}"
           docker push "${GO_IPFS_IMAGE}:${{ env.GO_IPFS_VERSION }}"
