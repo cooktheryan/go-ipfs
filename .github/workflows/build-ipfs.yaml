@@ -7,6 +7,7 @@ on:
     branches: ["master", "release*"]
 
 env:
+  REGISTRY: quay.io
   GO_VERSION: "1.17"
   GO_IPFS_VERSION: v0.12.2
   GO_IPFS_IMAGE: "quay.io/redhat-et-ipfs/ipfs"
@@ -55,9 +56,9 @@ jobs:
           
       - name: Login to registry
         # If the registry server is specified in the image name, we use that.
-        # If the server isn't in the image name, default to docker.io
+        # If the server isn't in the image name, default to quay.io
         run: |
-          [[ "${BUNDLE_IMAGE}" =~ ^([^/]+)/[^/]+/[^/]+ ]] && REGISTRY="${BASH_REMATCH[1]}" || REGISTRY="docker.io"
+          [[ "${BUNDLE_IMAGE}" =~ ^([^/]+)/[^/]+/[^/]+ ]] && REGISTRY="${BASH_REMATCH[1]}" || REGISTRY="quay.io"
           echo "Attempting docker login to: ${REGISTRY}"
           echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login -u "${{ secrets.REGISTRY_USERNAME }}" --password-stdin ${REGISTRY}
           
