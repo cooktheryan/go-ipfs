@@ -23,10 +23,10 @@ else
   ipfs config Addresses.API /ip4/0.0.0.0/tcp/5001
   ipfs config Addresses.Gateway /ip4/0.0.0.0/tcp/8080
 
-if [ ${IPFS_ADDITIONAL_ANNOUNCE+x} ]; then
-  echo "Adding additional announce address"
-  sed -i 's|    "AppendAnnounce": \[\]|    "AppendAnnounce": \["/dnsaddr/$IPFS_ADDITIONAL_ANNOUNCE/tcp/5001"\]|g' /data/ipfs/config
-fi
+if [ ${IPFS_ADDITIONAL_ANNOUNCE+x} ]; then       
+  echo "Adding additional announce address"          
+  ipfs config 'Addresses.AppendAnnounce' --json '["/dnsaddr/'${IPFS_ADDITIONAL_ANNOUNCE}'/tcp/4001"]' 
+fi  
 
   # Set up the swarm key, if provided
 
