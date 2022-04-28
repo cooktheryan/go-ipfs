@@ -25,12 +25,12 @@ else
 
 if [ ${IPFS_ADDITIONAL_ANNOUNCE+x} ]; then       
   echo "Adding additional announce address"          
-  if [[ $IPFS_ADDITIONAL_ANNOUNCE =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+  if expr "$IPFS_ADDITIONAL_ANNOUNCE" : '[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*$' >/dev/null; then 
         ipfs config 'Addresses.AppendAnnounce' --json '["/ip4/'${IPFS_ADDITIONAL_ANNOUNCE}'/tcp/4001"]'
   else
 	ipfs config 'Addresses.AppendAnnounce' --json '["/dnsaddr/'${IPFS_ADDITIONAL_ANNOUNCE}'/tcp/4001"]' 
   fi
-fi  
+fi 
 
   # Set up the swarm key, if provided
 
