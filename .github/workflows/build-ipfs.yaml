@@ -1,4 +1,4 @@
-name: Validate Ipfs
+name: build image 
 on: 
   push:
     branches: ["master", "release*"]
