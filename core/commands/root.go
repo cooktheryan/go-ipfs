@@ -21,11 +21,11 @@ var ErrNotOnline = errors.New("this command must be run in online mode. Try runn
 const (
 	RepoDirOption    = "repo-dir"
 	ConfigFileOption = "config-file"
-	ConfigOption  = "config"
-	DebugOption   = "debug"
-	LocalOption   = "local" // DEPRECATED: use OfflineOption
-	OfflineOption = "offline"
-	ApiOption     = "api"
+	ConfigOption     = "config"
+	DebugOption      = "debug"
+	LocalOption      = "local" // DEPRECATED: use OfflineOption
+	OfflineOption    = "offline"
+	ApiOption        = "api"
 )
 
 var Root = &cmds.Command{
@@ -152,7 +152,7 @@ var rootSubcommands = map[string]*cmds.Command{
 	"swarm":     SwarmCmd,
 	"tar":       TarCmd,
 	"file":      unixfs.UnixFSCmd,
-	"update":    ExternalBinary("Please see https://git.io/fjylH for installation instructions."),
+	"update":    ExternalBinary("Please see https://github.com/ipfs/ipfs-update/blob/master/README.md#install for installation instructions."),
 	"urlstore":  urlStoreCmd,
 	"version":   VersionCmd,
 	"shutdown":  daemonShutdownCmd,
